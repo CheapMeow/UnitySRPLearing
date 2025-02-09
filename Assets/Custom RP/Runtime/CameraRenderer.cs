@@ -41,7 +41,12 @@ public partial class CameraRenderer
     void DrawVisibleGeometry()
     {
         var sortingSettings = new SortingSettings(camera);
-        var drawingSettings = new DrawingSettings(unlitShaderTagId, sortingSettings);
+        var drawingSettings = new DrawingSettings(
+            unlitShaderTagId, sortingSettings
+        ) {
+            enableDynamicBatching = true,
+            enableInstancing = false
+        };
         var filteringSettings = new FilteringSettings(RenderQueueRange.opaque);
 
         context.DrawRenderers(

@@ -29,6 +29,10 @@ public class MeshBall : MonoBehaviour {
             block = new MaterialPropertyBlock();
             block.SetVectorArray(baseColorId, baseColors);
         }
-        Graphics.DrawMeshInstanced(mesh, 0, material, matrices, 1023, block);
+        // Graphics.DrawMeshInstanced(mesh, 0, material, matrices, 1023, block);
+        for (int i = 0; i < matrices.Length; i++)
+        {
+            Graphics.DrawMesh(mesh, matrices[i], material, 0);
+        }
     }
 }
