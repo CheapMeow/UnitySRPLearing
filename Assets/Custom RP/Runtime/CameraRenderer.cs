@@ -3,7 +3,6 @@ using UnityEngine.Rendering;
 
 public partial class CameraRenderer
 {
-
     ScriptableRenderContext context;
 
     Camera camera;
@@ -17,7 +16,8 @@ public partial class CameraRenderer
 
     CullingResults cullingResults;
 
-    static ShaderTagId unlitShaderTagId = new ShaderTagId("SRPDefaultUnlit");
+    static ShaderTagId unlitShaderTagId = new ShaderTagId("SRPDefaultUnlit"),
+        litShaderTagId = new ShaderTagId("CustomLit");
 
     public void Render(ScriptableRenderContext context, Camera camera,
         bool useDynamicBatching, bool useGPUInstancing)
@@ -44,10 +44,12 @@ public partial class CameraRenderer
         var sortingSettings = new SortingSettings(camera);
         var drawingSettings = new DrawingSettings(
             unlitShaderTagId, sortingSettings
-        ) {
+        )
+        {
             enableDynamicBatching = useDynamicBatching,
             enableInstancing = useGPUInstancing
         };
+        drawingSettings.SetShaderPassName(1, litShaderTagId);
         var filteringSettings = new FilteringSettings(RenderQueueRange.opaque);
 
         context.DrawRenderers(
@@ -79,8 +81,7 @@ public partial class CameraRenderer
         buffer.ClearRenderTarget(
             flags <= CameraClearFlags.Depth,
             flags == CameraClearFlags.Color,
-            flags == CameraClearFlags.Color ?
-                camera.backgroundColor.linear : Color.clear);
+            flags == CameraClearFlags.Color ? camera.backgroundColor.linear : Color.clear);
         buffer.BeginSample(SampleName);
         ExecuteBuffer();
     }
@@ -98,6 +99,7 @@ public partial class CameraRenderer
             cullingResults = context.Cull(ref p);
             return true;
         }
+
         return false;
     }
 }
