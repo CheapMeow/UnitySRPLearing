@@ -1613,7 +1613,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
-  material: {fileID: 2100000, guid: 1990e3b799095264cb3ad2e220943fdb, type: 2}
+  material: {fileID: 2100000, guid: fcf6f5a964e901f43af963c5202ecd57, type: 2}
 --- !u!4 &1209909381
 Transform:
   m_ObjectHideFlags: 0
@@ -2200,10 +2200,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 727ab0ade706be042a97010da6065048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseColor: {r: 1, g: 1, b: 1, a: 1}
-  cutoff: 0.5
-  metallic: 0.649
-  smoothness: 0.048
+  baseColor: {r: 0.41869882, g: 0.7485819, b: 0.9150943, a: 1}
+  cutoff: 0.463
+  metallic: 0.426
+  smoothness: 0.468
 --- !u!135 &1948838213
 SphereCollider:
   m_ObjectHideFlags: 0
